@@ -1,0 +1,26 @@
+<?php
+function cards_menu(){
+    $list = ['Hank', 'Wanda', 'Jan'];
+
+    $friends = array();
+    $friends['cards'] = array(
+        'title' => 'Greeting Cards',
+        'page callback' => 'greet_friend',
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    foreach ($list as $person) {
+        $friends['cards/' . $person ] = array(
+            'title' => 'Greetings ' . $person,
+            'page callback' => 'greet_friend',
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+    }
+    return $friends;
+}
+
+function greet_friend(){
+    return '<p>Hello World and ' . arg(1) . ' </p>';
+}
